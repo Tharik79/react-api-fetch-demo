@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+
+
+import { useEffect, useState } from 'react';
 import './App.css';
+// import ComLists from './ComLists';
+import Navbar from './Navbar';
 
 function App() {
+
+  const [comments, SetComments] = useState({});
+
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/comments').then(data => data.json())
+    .then((data) => {
+      //console.log(data);
+      SetComments(data);
+    })
+  }, []);
+    
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <Navbar />
+      </div>
+      <div className="container">
+        {
+          comments.map(comment => {
+            return(
+              <div className="card mt-3">
+              <div className="card-body">
+                <h5 className="card-title">{comment.name}</h5>
+                <p class="card-text">
+                  {comment.body}
+                </p>
+              </div>
+            </div>
+            )
+          })
+       
+}
+      </div>
     </div>
   );
 }
