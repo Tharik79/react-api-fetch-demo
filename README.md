@@ -1,4 +1,5 @@
 # Getting Started with Create React App
+This project can't be viewed using vs code editor because, the file name is different from the original one.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
